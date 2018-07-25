@@ -237,7 +237,6 @@
 		F760C7642108788C0026AF37 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7162108788B0026AF37 /* nanopb.framework */; };
 		F760C7652108788C0026AF37 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7172108788B0026AF37 /* FirebaseNanoPB.framework */; };
 		F760C7662108788C0026AF37 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7182108788B0026AF37 /* FirebaseInstanceID.framework */; };
-		F760C7672108788C0026AF37 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7192108788B0026AF37 /* FirebaseCoreDiagnostics.framework */; };
 		F762CAF71EACB66200B38484 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA41EACB66200B38484 /* XLFormBaseCell.m */; };
 		F762CAF81EACB66200B38484 /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA61EACB66200B38484 /* XLFormButtonCell.m */; };
 		F762CAF91EACB66200B38484 /* XLFormCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA81EACB66200B38484 /* XLFormCheckCell.m */; };
@@ -1700,7 +1699,6 @@
 				F760C7632108788C0026AF37 /* GoogleToolboxForMac.framework in Frameworks */,
 				F7FC7D561DC1F93800BB2C6A /* libz.tbd in Frameworks */,
 				F760C7642108788C0026AF37 /* nanopb.framework in Frameworks */,
-				F760C7672108788C0026AF37 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				F7A3771A1EB2364A002856D3 /* Fabric.framework in Frameworks */,
 				F7BB14961D5B62C000ECEE68 /* libcrypto.a in Frameworks */,
 				F760C7602108788C0026AF37 /* FirebaseMessaging.framework in Frameworks */,
