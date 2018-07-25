@@ -227,6 +227,17 @@
 		F75EDFBF1E8C116D00E6F369 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F75EDFBE1E8C116D00E6F369 /* libstdc++.tbd */; };
 		F760C5F1210869550026AF37 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F760C5F0210869550026AF37 /* NotificationService.swift */; };
 		F760C5F5210869550026AF37 /* Notification Service Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F760C5EE210869550026AF37 /* Notification Service Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F760C7422108788B0026AF37 /* NOTICES in Resources */ = {isa = PBXBuildFile; fileRef = F760C6EA2108788B0026AF37 /* NOTICES */; };
+		F760C7452108788B0026AF37 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F760C6EE2108788B0026AF37 /* README.md */; };
+		F760C75F2108788C0026AF37 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7102108788B0026AF37 /* Protobuf.framework */; };
+		F760C7602108788C0026AF37 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7112108788B0026AF37 /* FirebaseMessaging.framework */; };
+		F760C7612108788C0026AF37 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7132108788B0026AF37 /* FirebaseCore.framework */; };
+		F760C7622108788C0026AF37 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7142108788B0026AF37 /* FirebaseAnalytics.framework */; };
+		F760C7632108788C0026AF37 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7152108788B0026AF37 /* GoogleToolboxForMac.framework */; };
+		F760C7642108788C0026AF37 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7162108788B0026AF37 /* nanopb.framework */; };
+		F760C7652108788C0026AF37 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7172108788B0026AF37 /* FirebaseNanoPB.framework */; };
+		F760C7662108788C0026AF37 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7182108788B0026AF37 /* FirebaseInstanceID.framework */; };
+		F760C7672108788C0026AF37 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C7192108788B0026AF37 /* FirebaseCoreDiagnostics.framework */; };
 		F762CAF71EACB66200B38484 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA41EACB66200B38484 /* XLFormBaseCell.m */; };
 		F762CAF81EACB66200B38484 /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA61EACB66200B38484 /* XLFormButtonCell.m */; };
 		F762CAF91EACB66200B38484 /* XLFormCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F762CAA81EACB66200B38484 /* XLFormCheckCell.m */; };
@@ -483,6 +494,7 @@
 		F7D6650720FF341600BFBA9E /* NCMainCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D6650620FF341600BFBA9E /* NCMainCommon.swift */; };
 		F7DC5FEC1F011EB700A903C7 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DC5FE91F011EB700A903C7 /* MGSwipeButton.m */; };
 		F7DC5FED1F011EB700A903C7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DC5FEB1F011EB700A903C7 /* MGSwipeTableCell.m */; };
+		F7DEFA4C210888A8000CAAC3 /* NCPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEFA4B210888A8000CAAC3 /* NCPushNotification.m */; };
 		F7DFE2521EBDC3A400CF5202 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DFE24F1EBDC3A400CF5202 /* Realm.framework */; };
 		F7DFE2541EBDC3A400CF5202 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DFE2501EBDC3A400CF5202 /* RealmSwift.framework */; };
 		F7DFE2551EBDC3A400CF5202 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DFE2501EBDC3A400CF5202 /* RealmSwift.framework */; };
@@ -956,6 +968,19 @@
 		F760C5F0210869550026AF37 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F760C5F2210869550026AF37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F760C5F921086AE50026AF37 /* Notification Service Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Notification Service Extension.entitlements"; sourceTree = "<group>"; };
+		F760C6D52108788B0026AF37 /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		F760C6EA2108788B0026AF37 /* NOTICES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICES; sourceTree = "<group>"; };
+		F760C6EE2108788B0026AF37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F760C6FC2108788B0026AF37 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		F760C7102108788B0026AF37 /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Protobuf.framework; sourceTree = "<group>"; };
+		F760C7112108788B0026AF37 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = "<group>"; };
+		F760C7132108788B0026AF37 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		F760C7142108788B0026AF37 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		F760C7152108788B0026AF37 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		F760C7162108788B0026AF37 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = nanopb.framework; sourceTree = "<group>"; };
+		F760C7172108788B0026AF37 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		F760C7182108788B0026AF37 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		F760C7192108788B0026AF37 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		F762CAA31EACB66200B38484 /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		F762CAA41EACB66200B38484 /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
 		F762CAA51EACB66200B38484 /* XLFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormButtonCell.h; sourceTree = "<group>"; };
@@ -1553,6 +1578,8 @@
 		F7DE9AB11F482FA5008DFE10 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7DE9AB21F482FA5008DFE10 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Intro.strings; sourceTree = "<group>"; };
 		F7DE9AB31F482FA5008DFE10 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Error.strings; sourceTree = "<group>"; };
+		F7DEFA4A210888A8000CAAC3 /* NCPushNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPushNotification.h; sourceTree = "<group>"; };
+		F7DEFA4B210888A8000CAAC3 /* NCPushNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NCPushNotification.m; sourceTree = "<group>"; };
 		F7DFE24F1EBDC3A400CF5202 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		F7DFE2501EBDC3A400CF5202 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		F7E9C41520F4CA870040CF18 /* CCTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTransfers.h; sourceTree = "<group>"; };
@@ -1660,15 +1687,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F760C7612108788C0026AF37 /* FirebaseCore.framework in Frameworks */,
 				F7DFE2571EBDC52E00CF5202 /* Realm.framework in Frameworks */,
 				F75EDFBF1E8C116D00E6F369 /* libstdc++.tbd in Frameworks */,
+				F760C7622108788C0026AF37 /* FirebaseAnalytics.framework in Frameworks */,
 				F75EDFBD1E8C112F00E6F369 /* libsqlite3.0.tbd in Frameworks */,
+				F760C7652108788C0026AF37 /* FirebaseNanoPB.framework in Frameworks */,
 				F7DFE2541EBDC3A400CF5202 /* RealmSwift.framework in Frameworks */,
 				F7A377161EB2364A002856D3 /* Crashlytics.framework in Frameworks */,
+				F760C7632108788C0026AF37 /* GoogleToolboxForMac.framework in Frameworks */,
 				F7FC7D561DC1F93800BB2C6A /* libz.tbd in Frameworks */,
+				F760C7642108788C0026AF37 /* nanopb.framework in Frameworks */,
+				F760C7672108788C0026AF37 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				F7A3771A1EB2364A002856D3 /* Fabric.framework in Frameworks */,
 				F7BB14961D5B62C000ECEE68 /* libcrypto.a in Frameworks */,
+				F760C7602108788C0026AF37 /* FirebaseMessaging.framework in Frameworks */,
 				F7BB14971D5B62C000ECEE68 /* libssl.a in Frameworks */,
+				F760C7662108788C0026AF37 /* FirebaseInstanceID.framework in Frameworks */,
+				F760C75F2108788C0026AF37 /* Protobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1824,6 +1860,7 @@
 				F73CCE221DC13788007E38D8 /* DZNEmptyDataSet */,
 				F7659A211DC0B726004860C4 /* EAIntroView */,
 				F7659A2A1DC0B72F004860C4 /* EARestrictedScrollView */,
+				F760C6B12108788B0026AF37 /* Firebase */,
 				F78964A61EBB576C00403E13 /* JDStatusBarNotification */,
 				F7659A2F1DC0B737004860C4 /* iRate */,
 				F70F04821C889183008DAB36 /* MBProgressHUD */,
@@ -2202,6 +2239,42 @@
 				F760C5F2210869550026AF37 /* Info.plist */,
 			);
 			path = "Notification Service Extension";
+			sourceTree = "<group>";
+		};
+		F760C6B12108788B0026AF37 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F760C7122108788B0026AF37 /* Analytics */,
+				F760C6D52108788B0026AF37 /* Firebase.h */,
+				F760C70F2108788B0026AF37 /* Messaging */,
+				F760C6FC2108788B0026AF37 /* module.modulemap */,
+				F760C6EA2108788B0026AF37 /* NOTICES */,
+				F760C6EE2108788B0026AF37 /* README.md */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F760C70F2108788B0026AF37 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				F760C7102108788B0026AF37 /* Protobuf.framework */,
+				F760C7112108788B0026AF37 /* FirebaseMessaging.framework */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		F760C7122108788B0026AF37 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F760C7132108788B0026AF37 /* FirebaseCore.framework */,
+				F760C7142108788B0026AF37 /* FirebaseAnalytics.framework */,
+				F760C7152108788B0026AF37 /* GoogleToolboxForMac.framework */,
+				F760C7162108788B0026AF37 /* nanopb.framework */,
+				F760C7172108788B0026AF37 /* FirebaseNanoPB.framework */,
+				F760C7182108788B0026AF37 /* FirebaseInstanceID.framework */,
+				F760C7192108788B0026AF37 /* FirebaseCoreDiagnostics.framework */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		F762CA9F1EACB66200B38484 /* XLForm */ = {
@@ -3156,6 +3229,8 @@
 				F7F878AD1FB9E3B900599E4F /* NCEndToEndMetadata.swift */,
 				F70CAE381F8CF31A008125FD /* NCEndToEndEncryption.h */,
 				F70CAE391F8CF31A008125FD /* NCEndToEndEncryption.m */,
+				F7DEFA4A210888A8000CAAC3 /* NCPushNotification.h */,
+				F7DEFA4B210888A8000CAAC3 /* NCPushNotification.m */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -3441,6 +3516,7 @@
 				F732B3371E8045A1002B7D75 /* SwiftWebVC.strings in Resources */,
 				F7F54CF11E5B14C700E19C62 /* ImageSelectedSmallOn.png in Resources */,
 				F762CB1B1EACB66200B38484 /* XLForm.bundle in Resources */,
+				F760C7452108788B0026AF37 /* README.md in Resources */,
 				F7CA1ED520E7E3FE002CC65E /* .gitkeep in Resources */,
 				F762CB9A1EACB84400B38484 /* icon-success@2x.png in Resources */,
 				F77B0F551D118A16002130FE /* Error.strings in Resources */,
@@ -3483,6 +3559,7 @@
 				F77B0F8A1D118A16002130FE /* CCCellMain.xib in Resources */,
 				F77B0F8C1D118A16002130FE /* CCCellMainTransfer.xib in Resources */,
 				F73B4EF41F470D9100BBEE4B /* JISFreq.tab in Resources */,
+				F760C7422108788B0026AF37 /* NOTICES in Resources */,
 				F7D423451F0596AC009C9782 /* Reader-Mark-N@2x.png in Resources */,
 				F774DF101FCC26BE002AF9FC /* iTunesArtwork@2x.png in Resources */,
 				F7D423481F0596AC009C9782 /* Reader-Mark-Y@2x.png in Resources */,
@@ -3771,6 +3848,7 @@
 				F7CA1ED120E7E3FE002CC65E /* PKCircleProgressView.m in Sources */,
 				F75AE3C71E9D12900088BB09 /* SwiftyAvatar.swift in Sources */,
 				F762CAFC1EACB66200B38484 /* XLFormImageCell.m in Sources */,
+				F7DEFA4C210888A8000CAAC3 /* NCPushNotification.m in Sources */,
 				F70022D11EC4C9100080073F /* OCUserProfile.m in Sources */,
 				F73B4EF61F470D9100BBEE4B /* LangArabicModel.cpp in Sources */,
 				F7CA1ED420E7E3FE002CC65E /* PKPendingView.m in Sources */,
@@ -4593,16 +4671,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = iOSClient/Brand/iOSClient.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: it.twsweb.Nextcloud";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 6JLRKY9ZV7;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)\"/Libraries external/Analytics\"",
 					"$(PROJECT_DIR)\"/Libraries external/Fabric\"",
 					"$(PROJECT_DIR)\"/Libraries external/Realm\"",
+					"$(PROJECT_DIR)\"/Libraries external/Firebase\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOSClient/CryptoCloud.pch;
@@ -4614,11 +4692,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOSClient/Brand/iOSClient.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				LIBRARY_SEARCH_PATHS = "\"Libraries external/openssl\"";
-				OTHER_LDFLAGS = (
-					"-Obj-C",
-					"-all_load",
-				);
+				LIBRARY_SEARCH_PATHS = "\"Libraries external\"/**";
+				OTHER_LDFLAGS = "-Obj-C";
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.twsweb.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4643,7 +4718,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CODE_SIGN_ENTITLEMENTS = iOSClient/Brand/iOSClient.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: it.twsweb.Nextcloud";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "";
@@ -4651,9 +4726,9 @@
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)\"/Libraries external/Analytics\"",
 					"$(PROJECT_DIR)\"/Libraries external/Fabric\"",
 					"$(PROJECT_DIR)\"/Libraries external/Realm\"",
+					"$(PROJECT_DIR)\"/Libraries external/Firebase\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iOSClient/CryptoCloud.pch;
@@ -4665,11 +4740,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iOSClient/Brand/iOSClient.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				LIBRARY_SEARCH_PATHS = "\"Libraries external/openssl\"";
-				OTHER_LDFLAGS = (
-					"-Obj-C",
-					"-all_load",
-				);
+				LIBRARY_SEARCH_PATHS = "\"Libraries external\"/**";
+				OTHER_LDFLAGS = "-Obj-C";
 				PRODUCT_BUNDLE_IDENTIFIER = "it.twsweb.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

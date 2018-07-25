@@ -548,6 +548,16 @@
     [UICKeyChainStore setString:sDisable forKey:@"disablefilesapp" service:k_serviceShareKeyChain];
 }
 
++ (void)setPushNotificationPublicKey:(NSData *)data
+{
+    [UICKeyChainStore setData:data forKey:@"ncPNPublicKey" service:k_serviceShareKeyChain];
+}
+
++ (void)setPushNotificationPrivateKey:(NSData *)data
+{
+    [UICKeyChainStore setData:data forKey:@"ncPNPrivateKey" service:k_serviceShareKeyChain];
+}
+
 #pragma --------------------------------------------------------------------------------------------
 #pragma mark ===== Varius =====
 #pragma --------------------------------------------------------------------------------------------
