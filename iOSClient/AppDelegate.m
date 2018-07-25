@@ -40,8 +40,7 @@
 #import "NCPushNotification.h"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
-{
-}
+
 @end
 
 @implementation AppDelegate
@@ -60,39 +59,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Brand
-    if ([NCBrandOptions sharedInstance].use_firebase) {
-
-        //In order for this to work, proper GoogleService-Info.plist must be included
-        @try {
-            [FIRApp configure];
-        } @catch (NSException *exception) {
-            NSLog(@"[LOG] Something went wrong while configuring Firebase");
-        }
-    
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
-        
-            UIUserNotificationType allNotificationTypes =(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        
-            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        
-        } else {
-        
-            // iOS 10 or later
-            #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-            // For iOS 10 display notification (sent via APNS)
-            [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-            UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
-            [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            }];
-            #endif
-        }
-        
-        [application registerForRemoteNotifications];
-        [FIRMessaging messaging].delegate = self;
-    }
-    
     NSString *path;
     NSURL *dirGroup = [CCUtility getDirectoryGroup];
     
@@ -181,7 +147,36 @@
     // Initialization List
     self.listProgressMetadata = [[NSMutableDictionary alloc] init];
     self.listMainVC = [[NSMutableDictionary alloc] init];
-            
+    
+    // Push Notification
+    @try {
+        [FIRApp configure];
+    } @catch (NSException *exception) {
+        NSLog(@"[LOG] Something went wrong while configuring Firebase");
+    }
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        
+        UIUserNotificationType allNotificationTypes =(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        
+    } else {
+        
+        // iOS 10 or later
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+        // For iOS 10 display notification (sent via APNS)
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        }];
+#endif
+    }
+    
+    [application registerForRemoteNotifications];
+    [FIRMessaging messaging].delegate = self;
+    
     // setting Reachable in back
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
