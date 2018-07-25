@@ -553,9 +553,19 @@
     [UICKeyChainStore setData:data forKey:@"ncPNPublicKey" service:k_serviceShareKeyChain];
 }
 
++ (NSData *)getPushNotificationPublicKey
+{
+    return [UICKeyChainStore dataForKey:@"ncPNPublicKey" service:k_serviceShareKeyChain];
+}
+
 + (void)setPushNotificationPrivateKey:(NSData *)data
 {
     [UICKeyChainStore setData:data forKey:@"ncPNPrivateKey" service:k_serviceShareKeyChain];
+}
+
++ (NSData *)getPushNotificationPrivateKey
+{
+    return [UICKeyChainStore dataForKey:@"ncPNPrivateKey" service:k_serviceShareKeyChain];
 }
 
 #pragma --------------------------------------------------------------------------------------------
