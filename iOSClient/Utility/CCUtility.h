@@ -155,6 +155,8 @@
 + (NSData *)getPushNotificationPublicKey;
 + (void)setPushNotificationPrivateKey:(NSData *)data;
 + (NSData *)getPushNotificationPrivateKey;
++ (void)setPushNotificationToken:(NSString *)token;
++ (NSString *)getPushNotificationToken;
 
 // ===== Varius =====
 

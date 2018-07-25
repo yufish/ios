@@ -568,6 +568,16 @@
     return [UICKeyChainStore dataForKey:@"ncPNPrivateKey" service:k_serviceShareKeyChain];
 }
 
++ (void)setPushNotificationToken:(NSString *)token
+{
+    [UICKeyChainStore setString:token forKey:@"ncPushToken" service:k_serviceShareKeyChain];
+}
+
++ (NSString *)getPushNotificationToken
+{
+    return [UICKeyChainStore stringForKey:@"ncPushToken" service:k_serviceShareKeyChain];
+}
+
 #pragma --------------------------------------------------------------------------------------------
 #pragma mark ===== Varius =====
 #pragma --------------------------------------------------------------------------------------------

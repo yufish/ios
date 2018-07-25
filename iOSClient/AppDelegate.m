@@ -36,14 +36,11 @@
 #import "JDStatusBarNotification.h"
 #import "NCBridgeSwift.h"
 #import "NCAutoUpload.h"
+#import "Firebase.h"
+#import "NCPushNotification.h"
 
-/* Remove comment for activate Firebase and push notification */
-//#import "Firebase.h"
-//@interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
-
-@interface AppDelegate () <UNUserNotificationCenterDelegate>
+@interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
 {
-    
 }
 @end
 
@@ -65,10 +62,7 @@
 {
     // Brand
     if ([NCBrandOptions sharedInstance].use_firebase) {
-    
-        /* Remove comment for activate Firebase and push notification */
-        
-        /*
+
         //In order for this to work, proper GoogleService-Info.plist must be included
         @try {
             [FIRApp configure];
@@ -92,14 +86,13 @@
             UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
             [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
             }];
-        
-            // For iOS 10 data message (sent via FCM)
-            [FIRMessaging messaging].remoteMessageDelegate = self;
             #endif
         }
-         */
+        
+        [application registerForRemoteNotifications];
+        [FIRMessaging messaging].delegate = self;
     }
-
+    
     NSString *path;
     NSURL *dirGroup = [CCUtility getDirectoryGroup];
     
@@ -419,155 +412,34 @@
     NSLog(@"[LOG] Error Subscribing Nextcloud Server %@", message);
 }
 
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
 {
-    [application registerForRemoteNotifications];
+    //Called when a notification is delivered to a foreground app.
+    completionHandler(UNNotificationPresentationOptionAlert);
 }
 
-/* Remove comment for activate Firebase and push notification */
-
-/*
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(nonnull UNNotificationResponse *)response withCompletionHandler:(nonnull void (^)(void))completionHandler
 {
-    // test
-    if (self.activeAccount.length == 0)
-        return;
+    //Called to let your app know which action was selected by the user for a given notification.
+    NSString *message = [response.notification.request.content.userInfo objectForKey:@"subject"];
     
-    // FIREBASE registered token
-    
-    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
-    NSString *pushToken = [[FIRInstanceID instanceID] token];
-    // NSString *pushToken = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-    NSString *pushTokenHash = [[NCEndToEndEncryption sharedManager] createSHA512:pushToken];
-    NSDictionary *devicePushKey = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DevicePushKey-Info" ofType:@"plist"]];
-    
-#ifdef DEBUG
-    NSString *devicePublicKey = [devicePushKey objectForKey:@"devicePublicKeyDevelopment"];
-#else
-    NSString *devicePublicKey = [devicePushKey objectForKey:@"devicePublicKeyProduction"];
-#endif
-    
-    if ([devicePublicKey length] > 0 && [pushTokenHash length] > 0) {
-        
-        NSLog(@"[LOG] Firebase InstanceID push token: %@", pushToken);
-        
-        CCMetadataNet *metadataNet = [[CCMetadataNet alloc] initWithAccount:app.activeAccount];
-    
-        NSDictionary *options = [[NSDictionary alloc] initWithObjectsAndKeys:pushToken, @"pushToken", pushTokenHash, @"pushTokenHash", devicePublicKey, @"devicePublicKey", nil];
-        
-        metadataNet.action = actionSubscribingNextcloudServer;
-        metadataNet.options = options;
-        [app addNetworkingOperationQueue:app.netQueue delegate:self metadataNet:metadataNet];
-    }    
-}
-*/
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    NSLog(@"[LOG] Error register remote notification %@", error);
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    UIApplicationState state = [application applicationState];
-    
-    if (state == UIApplicationStateInactive || state == UIApplicationStateBackground) {
-        
-        NSLog(@"[LOG] Receive Notification on Inactive or Background state");
-        
-    } else {
-        
-        NSLog(@"[LOG] Receive Notification on Active state");
+    if (message && [NCPushNotification sharedInstance].ncPNPrivateKey) {
+        NSString *decryptedMessage = [[NCPushNotification sharedInstance] decryptPushNotification:message withDevicePrivateKey:[NCPushNotification sharedInstance].ncPNPrivateKey];
+        if (decryptedMessage) {
+           
+        }
     }
-    
-    // If you are receiving a notification message while your app is in the background,
-    // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
-    
-    // Print message ID.
-    //if (userInfo[kGCMMessageIDKey]) {
-    //    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-    //}
-    
-    // Print full message.
-    NSLog(@"[LOG] %@", userInfo);
-
+    completionHandler();
 }
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    UIApplicationState state = [application applicationState];
-    
-    // Print message ID.
-    //if (userInfo[kGCMMessageIDKey]) {
-    //    NSLog(@"Message ID: %@", userInfo[kGCMMessageIDKey]);
-    //}
-    
-    // Print full message.
-    NSLog(@"[LOG] %@", userInfo);
-
-    
-    if (state == UIApplicationStateBackground || (state == UIApplicationStateInactive)) {
-        
-    } else if (state == UIApplicationStateInactive) {
-        
-        // user tapped notification
-        completionHandler(UIBackgroundFetchResultNewData);
-        
-    } else {
-        
-        // app is active
-        completionHandler(UIBackgroundFetchResultNoData);
-    }
-}
-
-/* Remove comment for activate Firebase and push notification */
 
 #pragma FIREBASE
-/*
-- (void)tokenRefreshNotification:(NSNotification *)notification {
-    
-    // Note that this callback will be fired everytime a new token is generated, including the first
-    // time. So if you need to retrieve the token as soon as it is available this is where that
-    // should be done.
-    
-    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"[LOG] InstanceID token: %@", refreshedToken);
-    
-    // Connect to FCM since connection may have failed when attempted before having a token.
-    [self connectToFcm];
-    
-    // TODO: If necessary send token to application server.
-}
 
-- (void)connectToFcm {
-    
-    // Won't connect since there is no token
-    if (![[FIRInstanceID instanceID] token]) {
-        return;
-    }
-    
-    // Disconnect previous FCM connection if it exists.
-    [[FIRMessaging messaging] disconnect];
-    
-    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        if (error != nil) {
-            NSLog(@"[LOG] Unable to connect to FCM. %@", error);
-        } else {
-            NSLog(@"[LOG] Connected to FCM.");
-        }
-    }];
+- (void)messaging:(FIRMessaging *)messaging didRefreshRegistrationToken:(NSString *)fcmToken
+{
+    NSLog(@"FCM registration token: %@", fcmToken);
+    [NCPushNotification sharedInstance].ncPushToken = fcmToken;
+    [CCUtility setPushNotificationToken:fcmToken];
 }
-
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-// Receive data message on iOS 10 devices while app is in the foreground.
-- (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
-    // Print full message
-    NSLog(@"[LOG] %@", remoteMessage.appData);
-}
-#endif
-*/
 
 #pragma --------------------------------------------------------------------------------------------
 #pragma mark ===== Quick Actions - ShotcutItem =====
