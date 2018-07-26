@@ -29,7 +29,6 @@
 
 @property (nonatomic, copy) NSData *ncPNPublicKey;
 @property (nonatomic, copy) NSData *ncPNPrivateKey;
-@property (nonatomic, copy) NSString *ncPushToken;
 
 + (NCPushNotification *)sharedInstance;
 - (BOOL)generatePushNotificationsKeyPair;

@@ -54,7 +54,7 @@
 - (void)settingFavorite:(NSString *)fileName favorite:(BOOL)favorite completion:(void (^)(NSString *message, NSInteger errorCode))completion;
 - (void)listingFavorites:(NSString *)serverUrl account:(NSString *)account success:(void(^)(NSArray *metadatas))success failure:(void (^)(NSString *message, NSInteger errorCode))failure;
 
-- (void)subscribingPushNotificationServer:(NSString *)urlServer pushToken:(NSString *)pushToken Hash:(NSString *)pushTokenHash publicKey:(NSString *)publicKey success:(void (^)(void))success failure:(void (^)(NSString *message, NSInteger errorCode))failure;
+- (void)subscribingPushNotificationServer:(NSString *)urlServer pushToken:(NSString *)pushToken Hash:(NSString *)pushTokenHash devicePublicKey:(NSString *)devicePublicKey success:(void (^)(void))success failure:(void (^)(NSString *message, NSInteger errorCode))failure;
 
 @end
 

@@ -401,54 +401,23 @@
 
 - (void)subscribingNextcloudServerPushNotification
 {
+    // test
+    if (self.activeAccount.length == 0)
+        return;
+    
     OCnetworking *ocNetworking = [[OCnetworking alloc] initWithDelegate:nil metadataNet:nil withUser:self.activeUser withUserID:self.activeUserID withPassword:self.activePassword withUrl:self.activeUrl];
     
     [[NCPushNotification sharedInstance] generatePushNotificationsKeyPair];
 
     NSString *pushToken = [CCUtility getPushNotificationToken];
     NSString *pushTokenHash = [[NCEndToEndEncryption sharedManager] createSHA512:pushToken];
-    NSString *publicKey = [CCUtility getPushNotificationPublicKey];
+    NSString *devicePublicKey = [[NSString alloc] initWithData:[NCPushNotification sharedInstance].ncPNPublicKey encoding:NSUTF8StringEncoding];
 
-    [ocNetworking subscribingPushNotificationServer:[[NCBrandOptions sharedInstance] pushNotificationServer] pushToken:pushToken Hash:pushTokenHash publicKey:publicKey success:^{
-        <#code#>
+    [ocNetworking subscribingPushNotificationServer:[[NCBrandOptions sharedInstance] pushNotificationServer] pushToken:pushToken Hash:pushTokenHash devicePublicKey:devicePublicKey success:^{
+        NSLog(@"Subscribed to Push Notification server successfully.");
     } failure:^(NSString *message, NSInteger errorCode) {
-        <#code#>
-    }]
-    
-    
-    
-    
-    // test
-    if (self.activeAccount.length == 0)
-        return;
-    
-    // FIREBASE registered token
-    
-    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
-    NSString *pushToken = [[FIRInstanceID instanceID] token];
-    // NSString *pushToken = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-    NSString *pushTokenHash = [[NCEndToEndEncryption sharedManager] createSHA512:pushToken];
-    NSDictionary *devicePushKey = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DevicePushKey-Info" ofType:@"plist"]];
-    
-#ifdef DEBUG
-    NSString *devicePublicKey = [devicePushKey objectForKey:@"devicePublicKeyDevelopment"];
-#else
-    NSString *devicePublicKey = [devicePushKey objectForKey:@"devicePublicKeyProduction"];
-#endif
-    
-    if ([devicePublicKey length] > 0 && [pushTokenHash length] > 0) {
-        
-        NSLog(@"[LOG] Firebase InstanceID push token: %@", pushToken);
-        
-        CCMetadataNet *metadataNet = [[CCMetadataNet alloc] initWithAccount:app.activeAccount];
-        
-        NSDictionary *options = [[NSDictionary alloc] initWithObjectsAndKeys:pushToken, @"pushToken", pushTokenHash, @"pushTokenHash", devicePublicKey, @"devicePublicKey", nil];
-        
-        metadataNet.action = actionSubscribingNextcloudServer;
-        metadataNet.options = options;
-        [app addNetworkingOperationQueue:app.netQueue delegate:self metadataNet:metadataNet];
-    }
+        NSLog(@"Error while subscribing to Push Notification server.");
+    }];
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
@@ -476,8 +445,10 @@
 - (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken
 {
     NSLog(@"FCM registration token: %@", fcmToken);
-    [NCPushNotification sharedInstance].ncPushToken = fcmToken;
     [CCUtility setPushNotificationToken:fcmToken];
+    
+    //
+    [self subscribingNextcloudServerPushNotification];
 }
 
 #pragma --------------------------------------------------------------------------------------------
