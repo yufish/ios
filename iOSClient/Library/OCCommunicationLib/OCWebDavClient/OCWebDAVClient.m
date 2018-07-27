@@ -825,14 +825,10 @@ NSString const *OCWebDAVModificationDateKey	= @"modificationdate";
     
     _requestMethod = @"POST";
     
-    NSString *pushTokenHashParam = [NSString stringWithFormat:@"&pushTokenHash=%@",pushTokenHash];
-    NSString *devicePublicKeyParam = [NSString stringWithFormat:@"&devicePublicKey=%@",devicePublicKey];
-    NSString *proxyServerPathParam = [NSString stringWithFormat:@"&proxyServer=%@",proxyServerPath];
-    
     serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"?format=json"]];
-    serverPath = [serverPath stringByAppendingString:pushTokenHashParam];
-    serverPath = [serverPath stringByAppendingString:devicePublicKeyParam];
-    serverPath = [serverPath stringByAppendingString:proxyServerPathParam];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&pushTokenHash=%@",pushTokenHash]];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&devicePublicKey=%@",devicePublicKey]];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&proxyServer=%@",proxyServerPath]];
 
     NSMutableURLRequest *request = [self sharedRequestWithMethod:_requestMethod path:serverPath parameters:nil timeout:k_timeout_webdav];
 
@@ -846,17 +842,12 @@ NSString const *OCWebDAVModificationDateKey	= @"modificationdate";
     NSParameterAssert(success);
     
     _requestMethod = @"POST";
-    
-    pushToken = [NSString stringWithFormat:@"&pushToken=%@",pushToken];
-    deviceIdentifier = [NSString stringWithFormat:@"&deviceIdentifier=%@",deviceIdentifier];
-    deviceIdentifierSignature = [NSString stringWithFormat:@"&deviceIdentifierSignature=%@",deviceIdentifierSignature];
-    userPublicKey = [NSString stringWithFormat:@"&userPublicKey=%@",userPublicKey];
-    
+        
     serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"?format=json"]];
-    serverPath = [serverPath stringByAppendingString:pushToken];
-    serverPath = [serverPath stringByAppendingString:deviceIdentifier];
-    serverPath = [serverPath stringByAppendingString:deviceIdentifierSignature];
-    serverPath = [serverPath stringByAppendingString:userPublicKey];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&pushToken=%@",pushToken]];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&deviceIdentifier=%@",deviceIdentifier]];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&deviceIdentifierSignature=%@",deviceIdentifierSignature]];
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"&userPublicKey=%@",userPublicKey]];
     
     NSMutableURLRequest *request = [self sharedRequestWithMethod:_requestMethod path:serverPath parameters:nil timeout:k_timeout_webdav];
     
