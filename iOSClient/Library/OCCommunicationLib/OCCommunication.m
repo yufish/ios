@@ -1673,23 +1673,39 @@
     
     [request subscribingNextcloudServerPush:serverPath pushTokenHash:pushTokenHash devicePublicKey:devicePublicKey proxyServerPath:proxyServerPath onCommunication:sharedOCComunication success:^(NSHTTPURLResponse *response, id responseObject) {
         
-        OCXMLShareByLinkParser *parser = [[OCXMLShareByLinkParser alloc]init];
+        NSData *responseData = (NSData*)responseObject;
         
-        NSData *responseData = (NSData*) responseObject;
-        [parser initParserWithData:responseData];
-        
-        
-        //Parse
         NSError *error;
-        NSDictionary *jsongParsed = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
-        NSLog(@"[LOG] Subscribing at the Nextcloud server : %@",jsongParsed);
+        NSDictionary *jsongParsed = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
         
-        NSString *publicKey = [jsongParsed objectForKey:@"publicKey"];
-        NSString *deviceIdentifier = [jsongParsed objectForKey:@"deviceIdentifier"];
-        NSString *signature = [jsongParsed objectForKey:@"signature"];
-        
-        successRequest(response, publicKey, deviceIdentifier, signature, request.redirectedServer);
-        
+        if (jsongParsed && jsongParsed.allKeys > 0) {
+            
+            NSDictionary *ocs = [jsongParsed valueForKey:@"ocs"];
+            NSDictionary *meta = [ocs valueForKey:@"meta"];
+            NSDictionary *datas = [ocs valueForKey:@"data"];
+            
+            NSInteger statusCode = [[meta valueForKey:@"statuscode"] integerValue];
+            
+            if (statusCode == kOCPushNotificationAPISuccessful || statusCode == kOCPushNotificationAPINeedSendProxy) {
+                
+                NSString *publicKey = [datas objectForKey:@"publicKey"];
+                NSString *deviceIdentifier = [datas objectForKey:@"deviceIdentifier"];
+                NSString *signature = [datas objectForKey:@"signature"];
+                
+                successRequest(response, publicKey, deviceIdentifier, signature, request.redirectedServer);
+                
+            } else {
+                
+                NSString *message = (NSString *)[meta objectForKey:@"message"];
+                if ([message isKindOfClass:[NSNull class]]) {
+                    message = NSLocalizedStringFromTable(@"_server_response_error_", @"Error", nil);
+                }
+                failureRequest(response, [UtilsFramework getErrorWithCode:statusCode andCustomMessageFromTheServer:message], request.redirectedServer);
+            }
+        } else {
+            failureRequest(response, [UtilsFramework getErrorWithCode:k_CCErrorWebdavResponseError andCustomMessageFromTheServer:NSLocalizedStringFromTable(@"_server_response_error_", @"Error", nil)], request.redirectedServer);
+        }
+
     } failure:^(NSHTTPURLResponse *response, NSData *responseData, NSError *error) {
                 
         failureRequest(response, error, request.redirectedServer);
