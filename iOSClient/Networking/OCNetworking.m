@@ -1616,10 +1616,9 @@
 
     [communication subscribingNextcloudServerPush:urlServer pushTokenHash:pushTokenHash devicePublicKey:devicePublicKey proxyServerPath: [NCBrandOptions sharedInstance].pushNotificationServer onCommunication:communication successRequest:^(NSHTTPURLResponse *response, NSString *publicKey, NSString *deviceIdentifier, NSString *signature, NSString *redirectedServer) {
         
-        // encode URL
-        deviceIdentifier = [deviceIdentifier stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        signature = [signature stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        publicKey = [publicKey stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        deviceIdentifier = [CCUtility URLEncodeStringFromString:deviceIdentifier];
+        signature = [CCUtility URLEncodeStringFromString:signature];
+        publicKey = [CCUtility URLEncodeStringFromString:publicKey];
         
         [communication subscribingPushProxy:[NCBrandOptions sharedInstance].pushNotificationServer pushToken:pushToken deviceIdentifier:deviceIdentifier deviceIdentifierSignature:signature userPublicKey:publicKey onCommunication:communication successRequest:^(NSHTTPURLResponse *response, NSString *redirectedServer) {
             

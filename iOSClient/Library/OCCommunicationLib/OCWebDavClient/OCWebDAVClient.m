@@ -847,11 +847,12 @@ NSString const *OCWebDAVModificationDateKey	= @"modificationdate";
     
     _requestMethod = @"POST";
     
-    pushToken = [NSString stringWithFormat:@"?pushToken=%@",pushToken];
+    pushToken = [NSString stringWithFormat:@"&pushToken=%@",pushToken];
     deviceIdentifier = [NSString stringWithFormat:@"&deviceIdentifier=%@",deviceIdentifier];
     deviceIdentifierSignature = [NSString stringWithFormat:@"&deviceIdentifierSignature=%@",deviceIdentifierSignature];
     userPublicKey = [NSString stringWithFormat:@"&userPublicKey=%@",userPublicKey];
     
+    serverPath = [serverPath stringByAppendingString:[NSString stringWithFormat:@"?format=json"]];
     serverPath = [serverPath stringByAppendingString:pushToken];
     serverPath = [serverPath stringByAppendingString:deviceIdentifier];
     serverPath = [serverPath stringByAppendingString:deviceIdentifierSignature];
