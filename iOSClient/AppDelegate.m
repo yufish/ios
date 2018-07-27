@@ -148,7 +148,7 @@
     self.listProgressMetadata = [[NSMutableDictionary alloc] init];
     self.listMainVC = [[NSMutableDictionary alloc] init];
     
-    // Push Notification
+    // Firebase - Push Notification
     @try {
         [FIRApp configure];
     } @catch (NSException *exception) {
